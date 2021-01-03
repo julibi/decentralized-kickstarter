@@ -1,0 +1,22 @@
+{
+  "name": "decentralized-kickstarter",
+  "version": "1.0.0",
+  "description": "A kickstarter like app that is decentralized. This code is part of Stephen Grider's Udemy tutorial on Smart Contract Development in Solidity.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "ganache-cli": "^6.12.1",
+    "mocha": "^8.2.1",
+    "solc": "^0.8.0",
+    "truffle-hdwallet-provider": "^1.0.17",
+    "web3": "^1.3.1"
+  }
+}
