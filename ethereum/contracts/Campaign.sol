@@ -25,6 +25,7 @@ contract Campaign {
     }
 
     mapping(uint256 => Request) public requests;
+    uint256 public pendingRequestsCount;
     uint256 private currentIndex;
 
     address payable public manager;
@@ -60,6 +61,7 @@ contract Campaign {
         newRequestInStorage.complete = false;
         newRequestInStorage.approvalCount = 0;
         currentIndex++;
+        pendingRequestsCount++;
     }
 
     function approveRequest(uint256 indexOfRequest) public {
@@ -76,5 +78,22 @@ contract Campaign {
         require(request.approvalCount > (approversCount / 2));
         request.recipient.transfer(request.value);
         requests[index].complete = true;
+        pendingRequestsCount--;
+    }
+
+    function getSummary() public view returns (
+        uint, uint, uint, uint, address
+    ) {
+        return (
+           minimumContribution,
+           address(this).balance,
+           pendingRequestsCount,
+           approversCount,
+           manager
+        );
+    }
+
+    function getRequestsCount() public view returns (uint) {
+        return pendingRequestsCount;
     }
 }
